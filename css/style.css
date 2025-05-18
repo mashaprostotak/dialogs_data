@@ -105,6 +105,8 @@ header {
 .search-panel {
     display: flex;
     flex-direction: column;
+    height: 100%; /* Take full height */
+    position: relative; /* For positioning reference */
 }
 
 .search-panel h2 {
@@ -143,31 +145,16 @@ header {
     color: white;
 }
 
-.strategy-filters {
-    padding-right: 10px;
-    margin-bottom: 20px;
-}
-
-.strategy-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 8px;
-}
-
-.strategy-item label {
-    margin-left: 8px;
-    cursor: pointer;
-    font-size: 0.9rem;
-}
-
 .search-buttons {
     display: flex;
     gap: 10px;
-    padding-top: 10px;
-    /* Position at the bottom */
-    position: sticky;
-    bottom: 0;
+    padding: 10px 0;
     background-color: var(--panel-color);
+    position: absolute; /* Changed from sticky to absolute */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
 }
 
 #search-btn, #random-btn, #reset-btn {
@@ -413,4 +400,23 @@ footer {
     background-color: var(--border-color);
     cursor: not-allowed;
     opacity: 0.6;
+}
+
+/* Add padding at the bottom of strategy filters to prevent content from going under buttons */
+.strategy-filters {
+    padding-right: 10px;
+    margin-bottom: calc(var(--button-height) + 20px); /* Account for button height plus padding */
+    padding-bottom: 20px;
+}
+
+.strategy-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.strategy-item label {
+    margin-left: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
 }
