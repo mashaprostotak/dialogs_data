@@ -100,6 +100,7 @@ header {
     display: flex;
     flex-direction: column;
     position: relative; /* For positioning reference */
+    overflow: hidden; /* Prevent content from overflowing */
 }
 
 .search-panel {
@@ -107,6 +108,7 @@ header {
     flex-direction: column;
     height: 100%; /* Take full height */
     position: relative; /* For positioning reference */
+    overflow-y: visible; /* Don't hide overflow */
 }
 
 .search-panel h2 {
@@ -150,11 +152,10 @@ header {
     gap: 10px;
     padding: 10px 0;
     background-color: var(--panel-color);
-    position: absolute; /* Changed from sticky to absolute */
-    bottom: 0;
-    left: 0;
-    right: 0;
+    position: sticky; /* Make it stick in place */
+    bottom: 0; /* Stick to bottom of container */
     z-index: 10;
+    margin-top: 10px; /* Small gap after strategies */
 }
 
 #search-btn, #random-btn, #reset-btn {
@@ -405,8 +406,10 @@ footer {
 /* Add padding at the bottom of strategy filters to prevent content from going under buttons */
 .strategy-filters {
     padding-right: 10px;
-    margin-bottom: calc(var(--button-height) + 20px); /* Account for button height plus padding */
     padding-bottom: 20px;
+    margin-bottom: 0;
+    max-height: calc(100% - var(--button-height) - 40px); /* Reserve space for buttons */
+    overflow-y: auto; /* Enable scrolling if content exceeds max-height */
 }
 
 .strategy-item {
